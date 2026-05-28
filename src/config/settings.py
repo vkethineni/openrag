@@ -107,6 +107,12 @@ def get_role_claim_viewer() -> str | None:
     return os.getenv("OPENRAG_ROLE_CLAIM_VIEWER")
 
 
+def get_jwt_auth_header() -> str:
+    """HTTP header that may carry a gateway-forwarded JWT for /v1 (API-key)
+    callers. Read per-call so tests can override via monkeypatch.setenv."""
+    return os.getenv("OPENRAG_JWT_AUTH_HEADER", "Authorization")
+
+
 DOCLING_OCR_ENGINE = os.getenv("DOCLING_OCR_ENGINE")
 SEGMENT_WRITE_KEY = os.getenv("SEGMENT_WRITE_KEY", "")
 ENVIRONMENT = os.getenv("ENVIRONMENT", "")
